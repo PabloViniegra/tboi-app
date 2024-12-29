@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, Ref, watch } from "vue";
 import { useInfiniteItems } from "../composables/useItems";
+import { useItemStore } from "../store/itemStore";
 import CardItem from "./CardItem.vue";
 import CustomLoader from "../../../shared/components/CustomLoader.vue";
 import ItemModal from "./ItemModal.vue";
@@ -9,35 +10,8 @@ import { useToast } from "vue-toast-notification";
 
 const selectedItem: Ref<Item | null> = ref(null);
 const isModalOpen: Ref<boolean> = ref(false);
-const rawQuery: Ref<string> = ref("");
-const query: Ref<string> = ref("");
+const itemStore = useItemStore();
 const toaster = useToast();
-
-const {
-  items,
-  isPending,
-  isFetching,
-  isError,
-  error,
-  fetchNextPage,
-  hasNextPage,
-  isFetchingNextPage,
-} = useInfiniteItems(query);
-
-let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
-watch(
-  rawQuery,
-  (newQuery) => {
-    if (debounceTimeout) {
-      clearTimeout(debounceTimeout);
-    }
-
-    debounceTimeout = setTimeout(() => {
-      query.value = newQuery.trim();
-    }, 300);
-  },
-  { immediate: true }
-);
 
 const openModal = (item: Item) => {
   selectedItem.value = item;
@@ -48,17 +22,14 @@ const closeModal = () => {
   isModalOpen.value = false;
 };
 
-const loadMore = () => {
-  fetchNextPage();
-};
-
-const clearSearch = () => {
-  rawQuery.value = "";
-};
-
-watch(isError, (newIsError) => {
-  if (newIsError) toaster.error(`An error has occurred: ${error}`);
-});
+watch(
+  () => itemStore.isError,
+  (newIsError) => {
+    if (newIsError) {
+      toaster.error(`An error has occurred: ${itemStore.error}`);
+    }
+  }
+);
 </script>
 <template>
   <div class="flex justify-center mt-16">

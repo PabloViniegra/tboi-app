@@ -12,7 +12,8 @@ VueQueryPlugin.install(app, {
     queryClientConfig: {
         defaultOptions: {
             queries: {
-                refetchOnReconnect: 'always'
+                refetchOnReconnect: 'always',
+                retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
             }
         }
     }
