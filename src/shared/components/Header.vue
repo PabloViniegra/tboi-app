@@ -1,12 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+</script>
 <template>
-  <header class="flex flex-col md:flex-row justify-between items-center p-4">
+  <header
+    class="flex flex-col md:flex-row justify-between items-center gap-y-3 md:p-4"
+  >
     <img
       class="rounded-full size-24 shadow-sm shadow-emerald-50"
       src="../../shared/assets/icon.webp"
       alt="The Binding of Isaac Platinum Logo"
     />
-    <h1 class="text-3xl md:text-4xl text-white">
+    <h1 class="text-2xl text-center md:text-4xl text-white">
       The Binding of Isaac Platinum Remake
     </h1>
     <nav class="flex flex-row items-center gap-x-8">
@@ -14,6 +18,11 @@
         to="/"
         class="text-zinc-200/80 font-semibold hover:text-white hover:underline hover:font-bold"
         >Home</RouterLink
+      >
+      <RouterLink
+        to="/about"
+        class="text-zinc-200/80 font-semibold hover:text-white hover:underline hover:font-bold"
+        >About</RouterLink
       >
     </nav>
   </header>

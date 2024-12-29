@@ -1,15 +1,22 @@
-import { createWebHashHistory, createRouter } from "vue-router";
+import { createMemoryHistory, createRouter } from "vue-router";
+import HomeView from "../tboi/items/views/HomeView.vue";
+import AboutView from "../shared/views/AboutView.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../tboi/items/views/HomeView.vue"),
+    component: HomeView,
   },
+  {
+    path: "/about",
+    name: "About",
+    component: AboutView,
+  }
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createMemoryHistory(),
   routes,
 });
 
