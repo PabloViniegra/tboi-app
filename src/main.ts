@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import router from './router/index'
 import './style.css'
 import App from './App.vue'
+import { createPinia } from 'pinia'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import ToastPlugin from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-bootstrap.css';
@@ -20,4 +21,5 @@ VueQueryPlugin.install(app, {
 })
 app.use(ToastPlugin)
 app.use(router)
+app.use(createPinia())
 app.mount('#app')
