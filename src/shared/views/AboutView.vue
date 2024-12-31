@@ -2,7 +2,7 @@
 <template>
   <section class="py-24 relative">
     <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-      <div
+      <article
         class="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1"
       >
         <div
@@ -28,7 +28,10 @@
           src="../assets/about.webp"
           alt="about Us image"
         />
-      </div>
+    </article>
+    <article class="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1">
+        <h4 class="mt-12 text-center text-3xl font-extrabold text-white"></h4>
+    </article>
     </div>
   </section>
 </template>

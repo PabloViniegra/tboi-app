@@ -20,6 +20,10 @@ import { RouterLink } from "vue-router";
         >Home</RouterLink
       >
       <RouterLink
+        to="/chatbot"
+        class="text-zinc-200/80 font-semibold hover:text-white hover:underline hover:font-bold"
+        >Chatbot</RouterLink>
+      <RouterLink
         to="/about"
         class="text-zinc-200/80 font-semibold hover:text-white hover:underline hover:font-bold"
         >About</RouterLink

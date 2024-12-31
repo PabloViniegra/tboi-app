@@ -1,6 +1,7 @@
 import { createMemoryHistory, createRouter } from "vue-router";
 import HomeView from "../tboi/items/views/HomeView.vue";
 import AboutView from "../shared/views/AboutView.vue";
+import ChatbotView from "../tboi/chatbot/views/ChatbotView.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/about",
     name: "About",
     component: AboutView,
+  },
+  {
+    path: '/chatbot',
+    name: 'Chatbot',
+    component: ChatbotView,
   }
 ];
 
