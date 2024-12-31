@@ -28,12 +28,27 @@ export const useChatBotStore = defineStore("chatbot", () => {
 
       currentMessages.value.push({ role: "user", content: message });
 
-      const result = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: currentMessages.value,
-      });
+      let result;
+      let attempts = 0;
+      const maxAttempts = 3;
 
-      const responseText = result.choices[0]?.message?.content || "No response";
+      while (attempts < maxAttempts) {
+        try {
+          result = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: currentMessages.value,
+          });
+          break;
+        } catch (apiError) {
+          attempts++;
+          if (attempts >= maxAttempts) {
+            throw apiError;
+          }
+          console.warn(`Attempt ${attempts} failed. Retrying...`);
+        }
+      }
+
+      const responseText = result?.choices[0]?.message?.content || "No response";
 
       conversationContext.value.push({ inputText: message, responseText });
       currentMessages.value.push({ role: "assistant", content: responseText });
