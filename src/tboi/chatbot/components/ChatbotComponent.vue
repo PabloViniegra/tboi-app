@@ -1,60 +1,60 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { useChatBotStore } from "../stores/chatbotStore";
+import {  useChatbotStore } from "../stores/chatbotStore";
 import { useToast } from "vue-toast-notification";
 
 const userInput = ref("");
 
-const chatbotStore = useChatBotStore();
+const chatbotStore = useChatbotStore();
 const toaster = useToast();
 
 const sendMessage = async () => {
   if (!userInput.value.trim()) return;
-  await chatbotStore.generateResponse(userInput.value.trim());
+  await chatbotStore.sendUserMessage(userInput.value);
   userInput.value = "";
 };
 
-watch(() => chatbotStore.isError, (newValue) => {
-  if (newValue && chatbotStore.errorMessage) {
-    toaster.error(chatbotStore?.errorMessage);
+watch(() => chatbotStore.error, (newValue) => {
+  if (newValue && chatbotStore.error) {
+    toaster.error(chatbotStore.error);
   }
 });
 </script>
 
 <template>
     <section class="flex flex-col items-center justify-center mt-4 px-2 sm:px-6">
-      <div class="chatbot-container bg-gray-800 text-white rounded-lg shadow-lg p-4 w-full max-w-lg">
+      <div class="chatbot-container bg-gray-800 text-white rounded-lg shadow-lg p-4 w-1/3 md:w-3/6">
         <h2 class="text-neutral-200 text-lg md:text-xl font-bold mb-4 text-center font-sans flex items-center justify-center">
           <img class="rounded-full w-10 mr-3 shadow-sm" src="../../../shared/assets/assistant.webp" alt="Isaac assistant">
           Isaac's Assistant
         </h2>
         <div class="chat-messages max-h-96 overflow-y-auto border rounded p-4 bg-gray-900 space-y-4">
           <div
-            v-for="(context, index) in chatbotStore.conversationContext"
+            v-for="(context, index) in chatbotStore.messages"
             :key="index"
             class="w-full"
           >
-            <div class="mb-2">
+            <div class="mb-2" v-if="context.role === 'user'">
               <div class="bg-blue-500 text-white p-3 rounded-lg text-xs sm:text-sm w-full text-pretty">
                 <p class="font-semibold">User:</p>
-                <p>{{ context.inputText }}</p>
+                <p>{{ context.content }}</p>
               </div>
             </div>
-            <div class="mb-2">
+            <div class="mb-2" v-else-if="context.role === 'assistant'">
               <div class="bg-gray-700 text-white p-3 rounded-lg text-xs sm:text-sm w-full text-pretty">
                 <p class="font-semibold">Assistant:</p>
-                <p>{{ context.responseText }}</p>
+                <p>{{ context.content }}</p>
               </div>
             </div>
           </div>
         </div>
-        <section class="flex flex-row w-full justify-center mt-4">
-          <div class="input-container flex w-full max-w-lg">
+        <section class="flex flex-row w-4/5 justify-center mt-4">
+          <div class="input-container flex w-full">
             <input
               v-model="userInput"
               type="text"
               placeholder="Ask me anything about The Binding of Isaac..."
-              class="flex-grow p-3 rounded-l-lg border-0 text-gray-800 focus:ring-2 focus:ring-blue-500"
+              class="flex-grow p-3 rounded-l-lg border-0 text-gray-800 focus:ring-2 focus:ring-blue-500 mr-1"
               :disabled="chatbotStore.isLoading"
               @keyup.enter="sendMessage"
             />

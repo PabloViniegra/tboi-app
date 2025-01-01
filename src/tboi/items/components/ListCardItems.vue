@@ -78,7 +78,7 @@ watch(
     </div>
     <section>
       <span
-        v-if="itemStore.isPending || (itemStore.isFetching && !itemStore.isFetchingNextPage)"
+        v-if="itemStore.isPending || itemStore.isFetching || !itemStore.isFetchingNextPage"
         class="flex justify-center mt-[5rem]"
       >
         <CustomLoader
