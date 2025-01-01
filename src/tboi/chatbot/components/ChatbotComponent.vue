@@ -48,8 +48,8 @@ watch(() => chatbotStore.error, (newValue) => {
             </div>
           </div>
         </div>
-        <section class="flex flex-row w-4/5 justify-center mt-4">
-          <div class="input-container flex w-full">
+        <section class="flex flex-row w-full justify-center mt-4">
+          <div class="input-container flex w-full max-w-2xl">
             <input
               v-model="userInput"
               type="text"
