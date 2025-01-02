@@ -2,10 +2,10 @@
 
 </script>
 <template>
-    <footer class="bg-blue-700/70 backdrop-blur-md rounded-md text-white py-6 w-full mt-48">
+    <footer class="bg-indigo-600/50 backdrop-blur-md rounded-md text-white py-6 w-full mt-48 z-10">
         <section class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-y-6 px-4">
             <header class="flex flex-col items-center md:items-start">
-                <h2 class="text-2xl font-bold">The Binding of Isaac Platinum Remake</h2>
+                <h2 class="text-2xl font-bold text-center">The Binding of Isaac Platinum Remake</h2>
                 <p class="text-sm mt-2">© 2024 All rights reserved.</p>
             </header>
             <nav class="flex flex-col md:flex-row gap-4">
