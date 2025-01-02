@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import FixReporter from '../components/FixReporter.vue';
+
+</script>
 <template>
     <section class="py-24 relative">
         <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
@@ -57,7 +60,7 @@
                 <article
                     class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg shadow-md hover:shadow-lg hover:shadow-white hover:scale-105">
                     <h4 class="mt-4 text-center text-xl font-extrabold text-white">A Community-Driven Project</h4>
-                    <p class="text-white/80 text-balance text-base font-sans">
+                    <p class="text-white/80 text-balance text-base font-sans text-center">
                         This project is made by fans, for fans, with the goal of bringing everything that makes
                         <span class="italic">The Binding of Isaac</span> special into one place. We are committed to
                         continuous improvement, adding new features, and listening to your suggestions to grow
@@ -65,6 +68,7 @@
                     </p>
                 </article>
             </section>
+            <FixReporter />
         </div>
     </section>
 </template>
