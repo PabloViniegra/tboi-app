@@ -108,6 +108,11 @@ input {
     font-size: 0.875rem;
   }
 
+  .chat-messages {
+    height: 40vh;
+    max-height: calc(100vh - 150px);
+  }
+
   button {
     font-size: 0.875rem;
   }
