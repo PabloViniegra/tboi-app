@@ -21,7 +21,7 @@ const emit = defineEmits(["close-modal"]);
                 <h2 class="text-xl sm:text-2xl font-extrabold">{{ props.item?.title }}</h2>
             </header>
             <main class="flex flex-col items-center gap-y-4">
-                <div class="flex flex-col sm:flex-row justify-between w-full sm:w-3/4 gap-y-4 sm:gap-y-0">
+                <div class="flex flex-col sm:flex-row items-center sm:justify-between w-full sm:w-3/4 gap-y-6 sm:gap-y-0">
                     <h5 v-if="props.item?.short_description"
                         class="text-sm sm:text-md font-medium text-gray-400 p-2 bg-transparent border border-gray-400 rounded-lg text-center hover:bg-white hover:text-black hover:border-transparent hover:font-normal hover:shadow-lg">
                         {{ props.item?.short_description }}

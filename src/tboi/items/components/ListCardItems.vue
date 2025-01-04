@@ -39,12 +39,14 @@ watch(
 </script>
 
 <template>
-  <div class="flex justify-center mt-16 items-center flex-row gap-x-8">
+  <div
+    class="flex justify-center mt-16 items-center flex-col gap-y-2 sm:flex-row gap-x-8"
+  >
     <div class="relative w-2/3">
       <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          class="size-5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -151,7 +153,12 @@ watch(
     <footer class="flex flex-row justify-center mt-16">
       <button
         @click="itemStore.loadMore"
-        :disabled="!itemStore.hasNextPage || itemStore.isFetchingNextPage || itemStore.isFetching || itemStore.isPending"
+        :disabled="
+          !itemStore.hasNextPage ||
+          itemStore.isFetchingNextPage ||
+          itemStore.isFetching ||
+          itemStore.isPending
+        "
         class="rounded-full border-spacing-1 border-black bg-cyan-400/50 text-white font-semibold py-2 px-3 shadow-md hover:bg-sky-700"
       >
         <span v-if="itemStore.isFetchingNextPage">Loading more ...</span>

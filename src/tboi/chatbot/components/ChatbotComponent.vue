@@ -54,7 +54,7 @@ watch(() => chatbotStore.error, (newValue) => {
               v-model="userInput"
               type="text"
               placeholder="Ask me anything about The Binding of Isaac..."
-              class="flex-grow p-3 rounded-l-lg border-0 text-gray-800 focus:ring-2 focus:ring-blue-500 mr-1"
+              class="flex-grow p-3 rounded-l-lg border-0 text-gray-800 focus:ring-2 focus:ring-blue-500 mr-1 font-family-[]"
               :disabled="chatbotStore.isLoading"
               @keyup.enter="sendMessage"
             />
@@ -96,6 +96,7 @@ watch(() => chatbotStore.error, (newValue) => {
 
 input {
   font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 @media (max-width: 768px) {
