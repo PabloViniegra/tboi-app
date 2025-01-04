@@ -14,7 +14,9 @@ VueQueryPlugin.install(app, {
         defaultOptions: {
             queries: {
                 refetchOnReconnect: 'always',
+                refetchOnWindowFocus: 'always',
                 retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+                staleTime: 1000 * 60 * 5,
             }
         }
     }

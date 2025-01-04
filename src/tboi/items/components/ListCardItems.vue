@@ -151,7 +151,7 @@ watch(
     <footer class="flex flex-row justify-center mt-16">
       <button
         @click="itemStore.loadMore"
-        :disabled="!itemStore.hasNextPage || itemStore.isFetchingNextPage"
+        :disabled="!itemStore.hasNextPage || itemStore.isFetchingNextPage || itemStore.isFetching || itemStore.isPending"
         class="rounded-full border-spacing-1 border-black bg-cyan-400/50 text-white font-semibold py-2 px-3 shadow-md hover:bg-sky-700"
       >
         <span v-if="itemStore.isFetchingNextPage">Loading more ...</span>
