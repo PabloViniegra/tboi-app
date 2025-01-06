@@ -1,6 +1,11 @@
 import { computed, Ref } from "vue";
 import { getTboiItems } from "../helpers/get-tboi-items";
-import { useInfiniteQuery, useQuery } from "@tanstack/vue-query";
+import {
+  useQueryClient,
+  useQuery,
+  useInfiniteQuery,
+} from "@tanstack/vue-query";
+import { ResponseItems } from "../interfaces/items";
 
 export const useItems = (page: number, q?: string) => {
   const {
@@ -22,8 +27,9 @@ export const useItems = (page: number, q?: string) => {
   };
 };
 
-export const useInfiniteItems = (q?: Ref<string>) => {
-  const queryKey = computed(() => ["items_infinite", q?.value]);
+export const useInfiniteItems = (q?: Ref<string>, sortType?: Ref<string>) => {
+  const queryKey = computed(() => ["items_infinite", q?.value, sortType?.value]);
+  const queryClient = useQueryClient();
   const {
     data: items,
     isError,
@@ -35,7 +41,7 @@ export const useInfiniteItems = (q?: Ref<string>) => {
     isPending,
   } = useInfiniteQuery({
     queryKey,
-    queryFn: ({ pageParam = 1 }) => getTboiItems(pageParam, q?.value),
+    queryFn: ({ pageParam = 1 }) => getTboiItems(pageParam, q?.value, sortType?.value),
     getNextPageParam: (lastPage) => {
       if (lastPage.page < lastPage.pages) {
         return lastPage.page + 1;
@@ -43,6 +49,16 @@ export const useInfiniteItems = (q?: Ref<string>) => {
       return undefined;
     },
     initialPageParam: 1,
+    initialData: () => {
+      const cacheData = queryClient.getQueryData<ResponseItems>(queryKey.value);
+      if (cacheData) {
+        return {
+          pages: [cacheData],
+          pageParams: [1],
+        };
+      }
+      return undefined;
+    },
   });
 
   return {

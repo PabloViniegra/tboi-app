@@ -8,6 +8,8 @@ export const useItemStore = defineStore("item", () => {
   const items = ref<Item[]>([]);
   const rawQuery = ref<string>("");
   const query = ref<string>("");
+  const sortType = ref<string>("");
+  const sort = ref<string>("");
   const isPending = ref<boolean>(false);
   const isFetching = ref<boolean>(false);
   const isError = ref<boolean>(false);
@@ -25,7 +27,7 @@ export const useItemStore = defineStore("item", () => {
     fetchNextPage,
     hasNextPage: infiniteHasNextPage,
     isFetchingNextPage: infiniteFetchingNextPage,
-  } = useInfiniteItems(query);
+  } = useInfiniteItems(query, sort);
 
   // Sync states with useInfiniteItems
   watch(
@@ -61,6 +63,10 @@ export const useItemStore = defineStore("item", () => {
     }
   );
 
+  const setSortType = (type: string) => {
+    sortType.value = type;
+  }
+
   // Debounce query updates
   let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
   watch(
@@ -76,6 +82,19 @@ export const useItemStore = defineStore("item", () => {
     },
     { immediate: true }
   );
+
+  watch(
+    sortType,
+    (newSortType) => {
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
+
+        debounceTimeout = setTimeout(() => {
+            sort.value = newSortType;
+        }, 300);
+    }
+  )
 
   // Actions
   const clearSearch = () => {
@@ -98,5 +117,6 @@ export const useItemStore = defineStore("item", () => {
     isFetchingNextPage,
     clearSearch,
     loadMore,
+    setSortType
   };
 });

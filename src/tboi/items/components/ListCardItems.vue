@@ -6,6 +6,7 @@ import CustomLoader from "../../../shared/components/CustomLoader.vue";
 import ItemModal from "./ItemModal.vue";
 import { Item } from "../interfaces/items";
 import { useToast } from "vue-toast-notification";
+import SortDropdown from "../../../shared/components/SortDropdown.vue";
 
 const selectedItem: Ref<Item | null> = ref(null);
 const isModalOpen: Ref<boolean> = ref(false);
@@ -26,6 +27,14 @@ const openModal = (item: Item) => {
 
 const closeModal = () => {
   isModalOpen.value = false;
+};
+
+const handleSort = (sortValue: string | null) => {
+  if (sortValue) {
+    itemStore.setSortType(sortValue);
+  } else {
+    itemStore.setSortType("");
+  }
 };
 
 watch(
@@ -124,6 +133,9 @@ watch(
           <path d="M4 5h16v14H4z" />
         </svg>
       </button>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-center mt-4 space-x-3">
+        <SortDropdown @sort="handleSort"/>
     </div>
   </div>
 
