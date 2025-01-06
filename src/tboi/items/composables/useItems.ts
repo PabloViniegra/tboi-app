@@ -28,8 +28,24 @@ export const useItems = (page: number, q?: string) => {
 };
 
 export const useInfiniteItems = (q?: Ref<string>, sortType?: Ref<string>) => {
-  const queryKey = computed(() => ["items_infinite", q?.value, sortType?.value]);
+  const queryKey = computed(() => [
+    "items_infinite",
+    q?.value,
+    sortType?.value,
+  ]);
   const queryClient = useQueryClient();
+
+  const getCachedData = () => {
+    const cacheData = queryClient.getQueryData<ResponseItems>(queryKey.value);
+    if (cacheData) {
+      return {
+        pages: [cacheData],
+        pageParams: [1],
+      };
+    }
+    return undefined;
+  };
+
   const {
     data: items,
     isError,
@@ -41,7 +57,8 @@ export const useInfiniteItems = (q?: Ref<string>, sortType?: Ref<string>) => {
     isPending,
   } = useInfiniteQuery({
     queryKey,
-    queryFn: ({ pageParam = 1 }) => getTboiItems(pageParam, q?.value, sortType?.value),
+    queryFn: ({ pageParam = 1 }) =>
+      getTboiItems(pageParam, q?.value, sortType?.value),
     getNextPageParam: (lastPage) => {
       if (lastPage.page < lastPage.pages) {
         return lastPage.page + 1;
@@ -49,16 +66,9 @@ export const useInfiniteItems = (q?: Ref<string>, sortType?: Ref<string>) => {
       return undefined;
     },
     initialPageParam: 1,
-    initialData: () => {
-      const cacheData = queryClient.getQueryData<ResponseItems>(queryKey.value);
-      if (cacheData) {
-        return {
-          pages: [cacheData],
-          pageParams: [1],
-        };
-      }
-      return undefined;
-    },
+    retry: 3,
+    initialData: getCachedData,
+    placeholderData: getCachedData,
   });
 
   return {

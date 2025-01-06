@@ -135,7 +135,7 @@ watch(
       </button>
     </div>
     <div class="flex flex-col sm:flex-row justify-center mt-4 space-x-3">
-        <SortDropdown @sort="handleSort"/>
+      <SortDropdown @sort="handleSort" />
     </div>
   </div>
 
@@ -171,11 +171,47 @@ watch(
           itemStore.isFetching ||
           itemStore.isPending
         "
-        class="rounded-full border-spacing-1 border-black bg-cyan-400/50 text-white font-semibold py-2 px-3 shadow-md hover:bg-sky-700"
+        class="w-auto rounded-full border-spacing-1 border-black bg-cyan-400/50 text-white font-semibold py-2 px-3 shadow-md hover:bg-sky-700"
       >
-        <span v-if="itemStore.isFetchingNextPage">Loading more ...</span>
-        <span v-else-if="itemStore.hasNextPage">Load More</span>
-        <span v-else>Nothing more to load</span>
+        <span v-if="itemStore.isFetchingNextPage" class="loader"></span>
+        <div
+          v-else-if="itemStore.hasNextPage"
+          class="flex flex-row items-center gap-x-3"
+        >
+          <span>Load More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="size-5 text-white font-bold"
+            width="24"
+            height="24"
+            stroke-width="2"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="currentColor"
+          >
+            <path d="M12 5v.5m0 3v1.5m0 3v6"></path>
+            <path d="M18 13l-6 6"></path>
+            <path d="M6 13l6 6"></path>
+          </svg>
+        </div>
+        <div v-else class="flex flex-row items-center gap-x-3">
+          <span>Nothing more to load</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="size-5 text-white font-bold"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="24"
+            height="24"
+            stroke-width="2"
+          >
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </div>
       </button>
     </footer>
   </section>
@@ -185,3 +221,24 @@ watch(
     @close-modal="closeModal"
   />
 </template>
+<style scoped>
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
