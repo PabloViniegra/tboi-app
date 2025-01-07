@@ -1,4 +1,4 @@
-# The Binding of Isaac Platinum Remake - Frontend
+# The Binding of Isaac Platinum Remake
 
 This is the **frontend** for *The Binding of Isaac Platinum Remake*. Built with **Vue.js**, this application provides a user interface to browse, search, and interact with items from the game. It integrates with the REST API for data and offers a modern, responsive design.
 
@@ -67,6 +67,6 @@ npm run build
 npm run preview
 ```
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
