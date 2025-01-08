@@ -7,7 +7,7 @@ const props = defineProps<Props>();
 </script>
 <template>
   <div class="flex items-center">
-    <h1 class="pr-3 text-yellow-500/60 font-semibold text-md">Quality: </h1>
+    <h1 class="pr-3 text-yellow-500/60 font-semibold text-[15px]">Quality: </h1>
     <template v-for="index in 5" :key="index">
       <svg
         v-if="index <= props.rating"
