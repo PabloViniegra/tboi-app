@@ -12,7 +12,9 @@ import { RouterLink } from "vue-router";
         alt="The Binding of Isaac Platinum Logo"
       />
     </RouterLink>
-    <h1 class="text-2xl text-center md:text-4xl text-white">
+    <h1
+      class="text-2xl text-center md:text-4xl text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:duration-500"
+    >
       The Binding of Isaac Platinum Remake
     </h1>
     <nav class="flex flex-row items-center gap-x-8">
