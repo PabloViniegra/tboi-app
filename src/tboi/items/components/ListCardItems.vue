@@ -176,7 +176,7 @@ watch(
         <span v-if="itemStore.isFetchingNextPage" class="loader"></span>
         <div
           v-else-if="itemStore.hasNextPage"
-          class="flex flex-row items-center gap-x-3"
+          class="flex flex-row items-center gap-x-3 px-2"
         >
           <span>Load More</span>
           <svg
