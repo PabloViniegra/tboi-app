@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../db";
 import { useToast } from "vue-toast-notification";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const name = ref("")
 const description = ref("")
@@ -31,6 +33,13 @@ const submitForm = async () => {
 
 
 }
+
+onMounted(() => {
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+});
 </script>
 <template>
     <section class="mt-36 flex flex-col justify-center items-center gap-y-10">

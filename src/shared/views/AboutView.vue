@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import FixReporter from '../components/FixReporter.vue';
+import { onMounted } from 'vue';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
+onMounted(() => {
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+});
 </script>
 <template>
     <section class="py-24 relative">
@@ -9,10 +18,10 @@ import FixReporter from '../components/FixReporter.vue';
                 <div class="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
                     <div class="w-full flex-col justify-start lg:items-start items-center gap-4 flex">
                         <h2
-                            class="text-white text-2xl md:text-4xl font-extrabold leading-normal lg:text-start text-center mb-14">
+                            class="text-white text-2xl md:text-4xl font-extrabold leading-normal lg:text-start text-center mb-14" data-aos="fade-down">
                             Reconstruction of the mythical Platinum God site
                         </h2>
-                        <p class="text-white/70 text-md md:text-lg text-pretty font-medium lg:text-start text-center">
+                        <p class="text-white/70 text-md md:text-lg text-pretty font-medium lg:text-start text-center" data-aos="fade-up">
                             This website seeks to pay homage to the original site by trying to bring a fresh stylistic
                             perspective with a more modern approach. It is still under construction.
                         </p>
@@ -22,9 +31,9 @@ import FixReporter from '../components/FixReporter.vue';
                     src="../assets/about.webp" alt="about Us image" />
             </article>
             <section
-                class="w-full justify-around items-center gap-12 sm:gap-6 grid md:grid-cols-2 grid-cols-1 mt-24 px-4">
+                class="w-full justify-around items-center gap-12 sm:gap-6 grid md:grid-cols-2 grid-cols-1 mt-24 px-4" data-aos="zoom-in">
                 <article
-                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg hover:shadow-md hover:shadow-white hover:scale-105">
+                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg hover:shadow-md hover:shadow-white hover:scale-105" data-aos="fade-right">
                     <h4 class="mt-4 text-center text-xl font-extrabold text-white">Reimagining <span
                             class="italic text-wrap text-yellow-500/80 font-semibold hover:text-yellow-500">The
                             Binding of Isaac</span> Experience</h4>
@@ -36,7 +45,7 @@ import FixReporter from '../components/FixReporter.vue';
                     </p>
                 </article>
                 <article
-                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg hover:shadow-md hover:shadow-white hover:scale-105">
+                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg hover:shadow-md hover:shadow-white hover:scale-105" data-aos="fade-left">
                     <h4 class="mt-4 text-center text-xl font-extrabold text-white">Minimalism for Isaac Fans</h4>
                     <p class="text-white/80 text-balance text-base font-sans">
                         We understand the Isaac community is diverse: from seasoned speedrunners to newcomers
@@ -46,7 +55,7 @@ import FixReporter from '../components/FixReporter.vue';
                     </p>
                 </article>
                 <article
-                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg shadow-md hover:shadow-lg hover:shadow-white hover:scale-105">
+                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg shadow-md hover:shadow-lg hover:shadow-white hover:scale-105" data-aos="fade-up">
                     <h4 class="mt-4 text-center text-xl font-extrabold text-white">Your Personal Isaac Assistant
                     </h4>
                     <p class="text-white/80 text-balance text-base font-sans">
@@ -58,7 +67,7 @@ import FixReporter from '../components/FixReporter.vue';
                     </p>
                 </article>
                 <article
-                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg shadow-md hover:shadow-lg hover:shadow-white hover:scale-105">
+                    class="flex flex-col gap-y-8 justify-center text-pretty w-full p-4 bg-glass rounded-lg shadow-md hover:shadow-lg hover:shadow-white hover:scale-105" data-aos="fade-up">
                     <h4 class="mt-4 text-center text-xl font-extrabold text-white">A Community-Driven Project</h4>
                     <p class="text-white/80 text-balance text-base font-sans text-center">
                         This project is made by fans, for fans, with the goal of bringing everything that makes
